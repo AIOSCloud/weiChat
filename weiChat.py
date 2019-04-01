@@ -6,4 +6,5 @@ from FriendsHandler import *
 if __name__ == "__main__":
     """扫码登录微信"""
     itchat.auto_login(hotReload=True)
-    itchat.run()
+    get_friends()
+    pass

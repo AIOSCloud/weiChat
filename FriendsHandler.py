@@ -4,6 +4,7 @@
 import itchat
 from itchat.content import *
 from ThuleanRoboot import *
+import json
 
 
 @itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING], isFriendChat=True)
@@ -26,3 +27,21 @@ def download_files(msg):
     if msg.type == VIDEO:
         # 如果是视频
         pass
+    typeSymbol = {
+        PICTURE: 'Picture',
+        VIDEO: 'vid', }.get(msg.type, 'fil')
+    msg.user.send('@%s@%s' % (typeSymbol, msg.fileName))
+
+
+# 爬取好友信息
+def get_friends():
+    print("Hello word start")
+    friends = itchat.get_friends(update=True)[:]
+    total = len(friends[1:])
+    male = 0
+    female = 0
+    for f in friends:
+        male = male + 1
+        female = female + 1
+        print(f)
+    print("男性好友:%.2f%%" % (float(male) / total * 100))
